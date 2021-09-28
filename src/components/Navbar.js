@@ -2,8 +2,8 @@ import React, {Component} from "react";
 import styled from "styled-components";
 
 const StyledNavbar = styled.header`
-  background-color: ${props => props.theme.background};
-  color: ${props => props.theme.foreground};
+  background-color: ${props => props.theme.dark};
+  color: ${props => props.theme.light};
   padding: 20px;
   text-align: center;
 `;
