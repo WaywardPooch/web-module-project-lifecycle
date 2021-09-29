@@ -7,7 +7,7 @@ const StyledFollowerCard = styled.div`
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
   padding: 1rem;
   margin: 2rem auto;
-  max-width: 35rem;
+  width: 35rem;
 
   div.body {
     align-items: center;

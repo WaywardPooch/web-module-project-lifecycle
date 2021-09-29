@@ -17,9 +17,15 @@ const StyledApp = styled.div`
   min-height: 100vh;
 
   section.followers-container {
+    display: flex;
+    flex-flow: row wrap;
+    margin: 0 auto;
+    max-width: 80rem;
+
     h2 {
       padding-top: 3rem;
       text-align: center;
+      width: 100%;
     }
   }
 `;
