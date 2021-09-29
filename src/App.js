@@ -15,7 +15,13 @@ const StyledApp = styled.div`
   background-color: ${(props) => props.theme.light};
   margin: auto;
   min-height: 100vh;
-  text-align: center;
+
+  section.followers-container {
+    h2 {
+      padding-top: 3rem;
+      text-align: center;
+    }
+  }
 `;
 
 // ========== DEFINITIONS
@@ -72,10 +78,15 @@ class App extends Component {
     const userInfo = this.state.userInfo;
     return (
       <StyledApp>
+        {/* Header */}
         <Navbar />
+
+        {/* Top Section */}
         <section className="featured-user-container">
           <UserCard login={userInfo.login} avatar_url={userInfo.avatar_url} />
         </section>
+
+        {/* Body Section */}
         <section className="followers-container">
           <h2>Followers:</h2>
           {this.state.followers.map((follower) => {
