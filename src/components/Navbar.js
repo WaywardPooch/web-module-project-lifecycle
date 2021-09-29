@@ -7,6 +7,7 @@ const StyledNavbar = styled.header`
   text-align: center;
 
   div.body {
+    align-items: center;
     display: flex;
     justify-content: space-between;
     margin: auto;
@@ -15,13 +16,16 @@ const StyledNavbar = styled.header`
     h2 {
       color: ${(props) => props.theme.light};
     }
-    input {
-      &[type=text] {
-        background-color: ${(props) => props.theme.light};
-        border: none;
-        color: ${(props) => props.theme.black};
-        font-size: 1.8rem;
-        text-align: center;
+    form {
+      input {
+        &[type="text"] {
+          background-color: ${(props) => props.theme.light};
+          border: none;
+          color: ${(props) => props.theme.black};
+          font-size: 2rem;
+          padding: 0.6rem;
+          text-align: center;
+        }
       }
     }
   }
@@ -33,7 +37,13 @@ class Navbar extends Component {
       <StyledNavbar>
         <div className="body">
           <h2>GitHub User Card</h2>
-          <input type="text" placeholder="Search Username"/>
+          <form onSubmit={this.props.handleSearchSubmit}>
+            <input
+              type="text"
+              onChange={this.props.handleSearchInput}
+              placeholder="Search Username"
+            />
+          </form>
         </div>
       </StyledNavbar>
     );

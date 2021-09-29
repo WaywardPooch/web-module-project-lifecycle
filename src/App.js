@@ -28,21 +28,19 @@ const StyledApp = styled.div`
 class App extends Component {
   // ========== STATES
   state = {
-    username: "WaywardPooch",
+    username: "",
     userInfo: {
       login: "",
       avatar_url: "",
     },
     followers: [],
   };
+
   // ========== LIFECYCLE METHODS
   componentDidMount() {
     console.log("[APP] Mounted!");
-    this.updateUserInfo(this.state.username);
-    this.updateUserFollowers(this.state.username);
-  }
-  componentDidUpdate() {
-    console.log("[APP] Updated!");
+    this.updateUserInfo("WaywardPooch");
+    this.updateUserFollowers("WaywardPooch");
   }
 
   // ========== HELPERS
@@ -72,6 +70,19 @@ class App extends Component {
         console.error("Could not fetch followers data! Message:", error);
       });
   }
+  
+  // ========== EVENT HANDLERS
+  handleSearchInput = (event) => {
+    this.setState({
+      ...this.state,
+      username: event.target.value,
+    });
+  };
+  handleSearchSubmit = (event) => {
+    event.preventDefault();
+    this.updateUserInfo(this.state.username);
+    this.updateUserFollowers(this.state.username);
+  };
 
   // ========== MARKUP
   render() {
@@ -79,7 +90,10 @@ class App extends Component {
     return (
       <StyledApp>
         {/* Header */}
-        <Navbar />
+        <Navbar
+          handleSearchInput={this.handleSearchInput}
+          handleSearchSubmit={this.handleSearchSubmit}
+        />
 
         {/* Top Section */}
         <section className="featured-user-container">
@@ -94,7 +108,6 @@ class App extends Component {
               <FollowerCard
                 login={follower.login}
                 avatar_url={follower.avatar_url}
-
               />
             );
           })}
