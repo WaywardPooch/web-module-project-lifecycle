@@ -27,6 +27,19 @@ const StyledNavbar = styled.header`
           text-align: center;
         }
       }
+      button {
+        background-color: ${props => props.theme.secondary};
+        border: none;
+        color: ${props => props.theme.light};
+        font-size: 2rem;
+        padding: 0.6rem 2rem;
+        transition: 300ms;
+
+        &:hover {
+          background-color: ${(props) => props.theme.black};
+          color: ${(props) => props.theme.light};
+        }
+      }
     }
   }
 `;
@@ -43,6 +56,7 @@ class Navbar extends Component {
               onChange={this.props.handleSearchInput}
               placeholder="Search Username"
             />
+            <button>Search</button>
           </form>
         </div>
       </StyledNavbar>
