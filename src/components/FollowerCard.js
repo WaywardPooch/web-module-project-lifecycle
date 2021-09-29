@@ -7,22 +7,23 @@ const StyledFollowerCard = styled.div`
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
   padding: 1rem;
   margin: 2rem auto;
-  max-width: 40rem;
+  max-width: 35rem;
 
   div.body {
     align-items: center;
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-between;
 
-    h2 {
-      padding-bottom: 2rem;
-      text-align: center;
+    div.image-container {
+      img {
+        border-radius: 50%;
+        max-width: 8rem;
+        object-fit: cover;
+      }
     }
-    img {
-      border-radius: 50%;
-      max-width: 20%;
-      object-fit: cover;
+    div.text-container {
+      margin-left: 2rem;
+      text-align: left;
     }
   }
 `;
@@ -32,8 +33,12 @@ class FollowerCard extends Component {
     return (
       <StyledFollowerCard>
         <div className="body">
-          <img alt="account avatar" src={this.props.avatar_url} />
-          <p>Follower Name: {this.props.login}</p>
+          <div className="image-container">
+            <img alt="account avatar" src={this.props.avatar_url} />
+          </div>
+          <div className="text-container">
+            <p>{this.props.login}</p>
+          </div>
         </div>
       </StyledFollowerCard>
     );
