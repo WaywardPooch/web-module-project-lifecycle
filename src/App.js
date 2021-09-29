@@ -1,10 +1,11 @@
 // ========== IMPORTS
+// Libraries
 import React, { Component } from "react";
 import styled from "styled-components";
 import axios from "axios";
-
+// Styles
 import "./styles/general.css";
-
+// Components
 import Navbar from "./components/Navbar";
 import UserCard from "./components/UserCard";
 import FollowerCard from "./components/FollowerCard";
@@ -12,7 +13,10 @@ import FollowerCard from "./components/FollowerCard";
 // ========== STYLED COMPONENTS
 const StyledApp = styled.div`
   background-color: ${(props) => props.theme.light};
+  margin: auto;
+  max-width: 1000px;
   min-height: 100vh;
+  text-align: center;
 `;
 
 // ========== DEFINITIONS
@@ -29,10 +33,17 @@ class App extends Component {
   // ========== LIFECYCLE METHODS
   componentDidMount() {
     console.log("[APP] Mounted!");
+    this.updateUserInfo(this.state.username);
+    this.updateUserFollowers(this.state.username);
+  }
+  componentDidUpdate() {
+    console.log("[APP] Updated!");
+  }
 
-    // Get user info
+  // ========== HELPERS
+  updateUserInfo(username) {
     axios
-      .get(`https://api.github.com/users/${this.state.username}`)
+      .get(`https://api.github.com/users/${username}`)
       .then((response) => {
         this.setState({
           ...this.state,
@@ -42,10 +53,10 @@ class App extends Component {
       .catch((error) => {
         console.error("Could not fetch user data! Message:", error);
       });
-
-    // Get follower info
+  }
+  updateUserFollowers(username) {
     axios
-      .get(`https://api.github.com/users/${this.state.username}/followers`)
+      .get(`https://api.github.com/users/${username}/followers`)
       .then((response) => {
         this.setState({
           ...this.state,
@@ -56,9 +67,6 @@ class App extends Component {
         console.error("Could not fetch followers data! Message:", error);
       });
   }
-  componentDidUpdate() {
-    console.log("[APP] Updated!");
-  }
 
   // ========== MARKUP
   render() {
@@ -66,15 +74,20 @@ class App extends Component {
     return (
       <StyledApp>
         <Navbar />
-        <UserCard login={userInfo.login} avatar_url={userInfo.avatar_url} />
-        {this.state.followers.map((follower) => {
-          return (
-            <FollowerCard
-              login={follower.login}
-              avatar_url={follower.avatar_url}
-            />
-          );
-        })}
+        <section className="featured-user-container">
+          <UserCard login={userInfo.login} avatar_url={userInfo.avatar_url} />
+        </section>
+        <section className="followers-container">
+          <h2>Followers:</h2>
+          {this.state.followers.map((follower) => {
+            return (
+              <FollowerCard
+                login={follower.login}
+                avatar_url={follower.avatar_url}
+              />
+            );
+          })}
+        </section>
       </StyledApp>
     );
   }

@@ -7,7 +7,7 @@ const StyledUserCard = styled.div`
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
   padding: 3rem;
   margin: auto;
-  max-width: 400px;
+  max-width: 40rem;
 
   div.body {
     display: flex;
@@ -32,7 +32,7 @@ class UserCard extends Component {
       <StyledUserCard>
         <div className="body">
           <h2>User: {this.props.login}</h2>
-          <img src={this.props.avatar_url} />
+          <img alt="account avatar" src={this.props.avatar_url} />
         </div>
       </StyledUserCard>
     );
