@@ -2,27 +2,28 @@ import React, { Component } from "react";
 import styled from "styled-components";
 
 const StyledUserCard = styled.div`
-  background-color: white;
-  border-radius: 2rem;
+  align-items: center;
+  background-color: ${props => props.theme.primary};
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
-  padding: 3rem;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
   margin: auto;
-  max-width: 40rem;
+  padding-top: 4rem;
 
-  div.body {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-
-    h2 {
-      padding-bottom: 2rem;
-      text-align: center;
-    }
-    img {
-      border-radius: 50%;
-      max-width: 80%;
-      object-fit: cover;
-    }
+  h2 {
+    color: ${props => props.theme.light};
+    font-size: 3.2rem;
+    font-weight: 400;
+    padding: 2rem 0 3rem 0;
+    text-align: center;
+  }
+  img {
+    border: 0.5rem solid ${props => props.theme.light};
+    border-radius: 50%;
+    box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 0.2);
+    max-width: 20rem;
+    object-fit: cover;
   }
 `;
 
@@ -30,10 +31,8 @@ class UserCard extends Component {
   render() {
     return (
       <StyledUserCard>
-        <div className="body">
-          <h2>User: {this.props.login}</h2>
-          <img alt="account avatar" src={this.props.avatar_url} />
-        </div>
+        <img alt="account avatar" src={this.props.avatar_url} />
+        <h2>{this.props.login}</h2>
       </StyledUserCard>
     );
   }

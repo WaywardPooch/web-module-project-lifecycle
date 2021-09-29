@@ -1,8 +1,8 @@
 const theme = {
-  light: "#F6F9FC",
-  dark: "#222222",
-  accent: "#33AADD",
-  shade: "#ECF2F5"
+  light: "#f6f6f6",
+  dark: "#173f4f",
+  primary: "#4bb679",
+  secondary: "#35b9ab",
 }
 
 export default theme;

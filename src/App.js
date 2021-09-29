@@ -14,7 +14,6 @@ import FollowerCard from "./components/FollowerCard";
 const StyledApp = styled.div`
   background-color: ${(props) => props.theme.light};
   margin: auto;
-  max-width: 1000px;
   min-height: 100vh;
   text-align: center;
 `;
@@ -84,6 +83,7 @@ class App extends Component {
               <FollowerCard
                 login={follower.login}
                 avatar_url={follower.avatar_url}
+
               />
             );
           })}
